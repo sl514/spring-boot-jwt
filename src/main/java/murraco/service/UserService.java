@@ -3,6 +3,7 @@ package murraco.service;
 import javax.servlet.http.HttpServletRequest;
 
 import lombok.RequiredArgsConstructor;
+import murraco.core.Result;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,14 +25,16 @@ public class UserService {
   private final JwtTokenProvider jwtTokenProvider;
   private final AuthenticationManager authenticationManager;
 
-  public String signin(String username, String password) {
+  public Result<String> signin(String username, String password) {
     try {
       authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-      return jwtTokenProvider.createToken(username, userRepository.findByUsername(username).getAppUserRoles());
+      String token = jwtTokenProvider.createToken(username, userRepository.findByUsername(username).getAppUserRoles());
+      return new Result<String>().ok(token);
     } catch (AuthenticationException e) {
-      throw new CustomException("Invalid username/password supplied", HttpStatus.UNPROCESSABLE_ENTITY);
+      return new Result<String>().error("账号密码错误");
     }
   }
+
 
   public String signup(AppUser appUser) {
     if (!userRepository.existsByUsername(appUser.getUsername())) {
