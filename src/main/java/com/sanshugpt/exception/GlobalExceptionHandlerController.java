@@ -1,10 +1,8 @@
-package murraco.exception;
+package com.sanshugpt.exception;
 
-import java.io.IOException;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletResponse;
-
+import com.sanshugpt.module.common.exception.RenException;
+import com.sanshugpt.module.common.utils.Result;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.boot.web.error.ErrorAttributeOptions;
 import org.springframework.boot.web.servlet.error.DefaultErrorAttributes;
 import org.springframework.boot.web.servlet.error.ErrorAttributes;
@@ -14,6 +12,9 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
+
+import java.io.IOException;
+import java.util.Map;
 
 @RestControllerAdvice
 public class GlobalExceptionHandlerController {
@@ -30,8 +31,10 @@ public class GlobalExceptionHandlerController {
   }
 
   @ExceptionHandler(CustomException.class)
-  public void handleCustomException(HttpServletResponse res, CustomException ex) throws IOException {
-    res.sendError(ex.getHttpStatus().value(), ex.getMessage());
+  public Result<String> handleCustomException(CustomException ex) throws IOException {
+    Result<String> result = new Result<>();
+    result.error( ex.getMessage());
+    return result;
   }
 
   @ExceptionHandler(AccessDeniedException.class)
@@ -40,8 +43,11 @@ public class GlobalExceptionHandlerController {
   }
 
   @ExceptionHandler(Exception.class)
-  public void handleException(HttpServletResponse res) throws IOException {
-    res.sendError(HttpStatus.BAD_REQUEST.value(), "Something went wrong");
+  public Result<String> handleException(Exception ex) throws IOException {
+    Result<String> result = new Result<>();
+    result.error( ex.getMessage());
+    return result;
   }
+
 
 }

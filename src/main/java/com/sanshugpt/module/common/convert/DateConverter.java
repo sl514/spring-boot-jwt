@@ -6,7 +6,7 @@
  * 版权所有，侵权必究！
  */
 
-package io.renren.common.convert;
+package com.sanshugpt.module.common.convert;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

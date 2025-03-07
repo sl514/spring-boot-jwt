@@ -6,7 +6,7 @@
  * 版权所有，侵权必究！
  */
 
-package io.renren.common.service.impl;
+package com.sanshugpt.module.common.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.enums.SqlMethod;
@@ -18,10 +18,10 @@ import com.baomidou.mybatisplus.core.toolkit.ReflectionKit;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.SqlHelper;
-import io.renren.common.constant.Constant;
-import io.renren.common.page.PageData;
-import io.renren.common.service.BaseService;
-import io.renren.common.utils.ConvertUtils;
+import com.sanshugpt.module.common.constant.Constant;
+import com.sanshugpt.module.common.page.PageData;
+import com.sanshugpt.module.common.service.BaseService;
+import com.sanshugpt.module.common.utils.ConvertUtils;
 import org.apache.ibatis.binding.MapperMethod;
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;

@@ -6,9 +6,9 @@
  * 版权所有，侵权必究！
  */
 
-package io.renren.common.utils;
+package com.sanshugpt.module.common.utils;
 
-import io.renren.common.constant.Constant;
+import com.sanshugpt.module.common.constant.Constant;
 import jakarta.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpHeaders;

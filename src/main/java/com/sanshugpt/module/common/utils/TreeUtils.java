@@ -6,9 +6,9 @@
  * 版权所有，侵权必究！
  */
 
-package io.renren.common.utils;
+package com.sanshugpt.module.common.utils;
 
-import io.renren.common.validator.AssertUtils;
+import com.sanshugpt.module.common.validator.AssertUtils;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

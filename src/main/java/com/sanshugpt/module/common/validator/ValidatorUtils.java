@@ -6,9 +6,9 @@
  * 版权所有，侵权必究！
  */
 
-package io.renren.common.validator;
+package com.sanshugpt.module.common.validator;
 
-import io.renren.common.exception.RenException;
+import com.sanshugpt.module.common.exception.RenException;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;

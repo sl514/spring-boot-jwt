@@ -6,10 +6,10 @@
  * 版权所有，侵权必究！
  */
 
-package io.renren.common.xss;
+package com.sanshugpt.module.common.xss;
 
-import io.renren.common.exception.ErrorCode;
-import io.renren.common.exception.RenException;
+import com.sanshugpt.module.common.exception.ErrorCode;
+import com.sanshugpt.module.common.exception.RenException;
 import org.apache.commons.lang3.StringUtils;
 
 /**

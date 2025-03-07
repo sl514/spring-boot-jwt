@@ -6,7 +6,7 @@
  * 版权所有，侵权必究！
  */
 
-package io.renren.common.enums;
+package com.sanshugpt.module.common.enums;
 
 /**
  * 超级管理员枚举

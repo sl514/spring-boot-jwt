@@ -1,73 +1,57 @@
-package murraco.controller;
+package com.sanshugpt.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
+import com.sanshugpt.module.common.utils.ConvertUtils;
+import com.sanshugpt.module.common.utils.Result;
+import com.sanshugpt.service.AppUserService;
+import com.sanshugpt.vo.AppUserVO;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import murraco.core.Result;
-import murraco.model.AppUser;
-import org.modelmapper.ModelMapper;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
-import io.swagger.annotations.Authorization;
-import murraco.dto.UserDataDTO;
-import murraco.dto.UserResponseDTO;
-import murraco.service.UserService;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/users")
-@Api(tags = "users")
+@Tag(name = "用户管理", description = "用户相关操作")  // 替换 @Api
 @RequiredArgsConstructor
 public class UserController {
 
-    private final UserService userService;
-    private final ModelMapper modelMapper;
+    @Resource
+    private AppUserService userService;
 
-    @PostMapping("/signin")
-    public Result<String> login(@RequestParam String username, @RequestParam String password) {
-        return userService.signin(username, password);
+    @PostMapping("/login")
+    @Operation(summary = "用户登录", description = "使用用户名和密码登录")
+    public Result<String> login(
+            @Parameter(description = "用户名", example = "zhangsan") @RequestParam String username,
+            @Parameter(description = "密码", example = "123456") @RequestParam String password) {
+        return userService.login(username, password);
     }
 
-    @PostMapping("/signup")
-    public String signup(@ApiParam("Signup User") @RequestBody UserDataDTO user) {
-        return userService.signup(modelMapper.map(user, AppUser.class));
+    @PostMapping("/register")
+    @Operation(summary = "用户注册", description = "新用户注册")
+    public String signup(
+            @Parameter(description = "用户注册信息") @RequestBody AppUserVO user) {
+        return userService.register(user);
     }
 
-    @DeleteMapping(value = "/{username}")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public String delete(@ApiParam("Username") @PathVariable String username) {
-        userService.delete(username);
-        return username;
-    }
 
     @GetMapping(value = "/{username}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public UserResponseDTO search(@ApiParam("Username") @PathVariable String username) {
-        return modelMapper.map(userService.search(username), UserResponseDTO.class);
+    @Operation(summary = "查询用户", description = "管理员根据用户名查询用户信息")
+    public AppUserVO search(
+            @Parameter(description = "用户名") @PathVariable String username) {
+        return ConvertUtils.sourceToTarget (userService.getByUsername(username), AppUserVO.class);
     }
 
     @GetMapping(value = "/me")
     @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_CLIENT')")
-    public Result<UserResponseDTO> whoami(HttpServletRequest req) {
-        return new Result<UserResponseDTO>().ok(modelMapper.map(userService.whoami(req), UserResponseDTO.class));
+    @Operation(summary = "获取当前用户信息", description = "管理员和客户端用户都可以查看自己的信息")
+    public Result<AppUserVO> whoami(HttpServletRequest req) {
+        return new Result<AppUserVO>().ok(ConvertUtils.sourceToTarget(userService.whoami(req), AppUserVO.class));
     }
 
-    @GetMapping("/refresh")
-    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_CLIENT')")
-    public String refresh(HttpServletRequest req) {
-        return userService.refresh(req.getRemoteUser());
-    }
 
 }

@@ -6,13 +6,13 @@
  * 版权所有，侵权必究！
  */
 
-package io.renren.common.validator;
+package com.sanshugpt.module.common.validator;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.ArrayUtil;
-import io.renren.common.exception.ErrorCode;
-import io.renren.common.exception.RenException;
+import com.sanshugpt.module.common.exception.ErrorCode;
+import com.sanshugpt.module.common.exception.RenException;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;

@@ -6,7 +6,7 @@
  * 版权所有，侵权必究！
  */
 
-package io.renren.common.dao;
+package com.sanshugpt.module.common.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 

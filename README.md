@@ -18,7 +18,7 @@
 
 # If this helped, consider buying me a coffee! ☕️
 
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/murraco)
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/com.sanshugpt)
 
 # File structure
 
@@ -26,7 +26,7 @@
 spring-boot-jwt/
  │
  ├── src/main/java/
- │   └── murraco
+ │   └── com.sanshugpt
  │       ├── configuration
  │       │   └── SwaggerConfig.java
  │       │
@@ -402,4 +402,4 @@ $ curl -X GET http://localhost:8080/users/me -H 'Authorization: Bearer <JWT_TOKE
 
 # Buy me a coffee to show your support!
 
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/murraco)
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/com.sanshugpt)

@@ -1,4 +1,4 @@
-package io.renren.common.xss;
+package com.sanshugpt.module.common.xss;
 
 import jakarta.servlet.DispatcherType;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;

@@ -6,9 +6,9 @@
  * 版权所有，侵权必究！
  */
 
-package io.renren.common.utils;
+package com.sanshugpt.module.common.utils;
 
-import io.renren.common.exception.ErrorCode;
+import com.sanshugpt.module.common.exception.ErrorCode;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 

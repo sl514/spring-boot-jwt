@@ -1,4 +1,4 @@
-package io.renren.common.utils;
+package com.sanshugpt.module.common.utils;
 
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.StrUtil;

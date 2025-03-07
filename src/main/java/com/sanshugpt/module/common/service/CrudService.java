@@ -6,9 +6,9 @@
  * 版权所有，侵权必究！
  */
 
-package io.renren.common.service;
+package com.sanshugpt.module.common.service;
 
-import io.renren.common.page.PageData;
+import com.sanshugpt.module.common.page.PageData;
 
 import java.util.List;
 import java.util.Map;

@@ -6,7 +6,7 @@
  * 版权所有，侵权必究！
  */
 
-package io.renren.common.xss;
+package com.sanshugpt.module.common.xss;
 
 import cn.hutool.core.io.IoUtil;
 import jakarta.servlet.ReadListener;

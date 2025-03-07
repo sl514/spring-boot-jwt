@@ -6,7 +6,7 @@
  * 版权所有，侵权必究！
  */
 
-package io.renren.common.constant;
+package com.sanshugpt.module.common.constant;
 
 /**
  * 常量

@@ -6,7 +6,7 @@
  * 版权所有，侵权必究！
  */
 
-package io.renren.common.service;
+package com.sanshugpt.module.common.service;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 

@@ -6,7 +6,7 @@
  * 版权所有，侵权必究！
  */
 
-package io.renren.common.user;
+package com.sanshugpt.module.common.user;
 
 import lombok.Data;
 

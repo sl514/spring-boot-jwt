@@ -6,7 +6,7 @@
  * 版权所有，侵权必究！
  */
 
-package io.renren.common.page;
+package com.sanshugpt.module.common.page;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;

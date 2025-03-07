@@ -6,7 +6,7 @@
  * 版权所有，侵权必究！
  */
 
-package io.renren.common.xss;
+package com.sanshugpt.module.common.xss;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;

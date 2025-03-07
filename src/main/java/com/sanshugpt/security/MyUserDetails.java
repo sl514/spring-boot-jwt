@@ -1,32 +1,44 @@
-package murraco.security;
+package com.sanshugpt.security;
 
+import com.sanshugpt.dao.AppUserRolesDao;
+import com.sanshugpt.entity.AppUser;
+import com.sanshugpt.dao.AppUserDao;
+import com.sanshugpt.entity.AppUserRoles;
+import jakarta.annotation.Resource;
 import lombok.RequiredArgsConstructor;
-import murraco.model.AppUser;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import murraco.repository.UserRepository;
+import java.util.List;
+
 
 @Service
 @RequiredArgsConstructor
 public class MyUserDetails implements UserDetailsService {
 
-  private final UserRepository userRepository;
+  @Resource
+  private AppUserDao userMapper;
+
+  @Resource
+  AppUserRolesDao appUserRolesDao;
+
 
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    final AppUser appUser = userRepository.findByUsername(username);
+     AppUser appUser = userMapper.findByUsername(username);
 
     if (appUser == null) {
       throw new UsernameNotFoundException("User '" + username + "' not found");
     }
 
+    List<AppUserRoles> roles =appUserRolesDao.findRolesByUserId(appUser.getId());
+
     return org.springframework.security.core.userdetails.User//
         .withUsername(username)//
         .password(appUser.getPassword())//
-        .authorities(appUser.getAppUserRoles())//
+        .authorities(roles)//
         .accountExpired(false)//
         .accountLocked(false)//
         .credentialsExpired(false)//

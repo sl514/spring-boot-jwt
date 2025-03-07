@@ -1,27 +1,28 @@
-package murraco.security;
+package com.sanshugpt.security;
 
 import java.io.IOException;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
+import cn.hutool.json.JSONUtil;
+import com.sanshugpt.module.common.utils.Result;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;
 
-import murraco.exception.CustomException;
+import com.sanshugpt.exception.CustomException;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 // We should use OncePerRequestFilter since we are doing a database call, there is no point in doing this more than once
 public class JwtTokenFilter extends OncePerRequestFilter {
 
-  private JwtTokenProvider jwtTokenProvider;
+  private com.sanshugpt.security.JwtTokenProvider jwtTokenProvider;
 
-  public JwtTokenFilter(JwtTokenProvider jwtTokenProvider) {
+  public JwtTokenFilter(com.sanshugpt.security.JwtTokenProvider jwtTokenProvider) {
     this.jwtTokenProvider = jwtTokenProvider;
   }
 
@@ -36,7 +37,12 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     } catch (CustomException ex) {
       //this is very important, since it guarantees the user is not authenticated at all
       SecurityContextHolder.clearContext();
-      httpServletResponse.sendError(ex.getHttpStatus().value(), ex.getMessage());
+      httpServletResponse.setStatus(HttpStatus.OK.value()); // 设置 HTTP 状态码为 200
+      httpServletResponse.setContentType("application/json; charset=UTF-8");
+      httpServletResponse.getWriter().write(JSONUtil.toJsonStr(new Result<String>().error(-1,ex.getMessage())));
+      httpServletResponse.getWriter().flush();
+      httpServletResponse.getWriter().close();
+
       return;
     }
 

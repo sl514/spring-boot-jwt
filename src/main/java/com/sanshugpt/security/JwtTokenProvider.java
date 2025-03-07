@@ -1,4 +1,4 @@
-package murraco.security;
+package com.sanshugpt.security;
 
 import java.util.Base64;
 import java.util.Date;
@@ -6,11 +6,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpServletRequest;
-
-import murraco.model.AppUserRole;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.sanshugpt.vo.AppUserRolesVO;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,7 +22,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import murraco.exception.CustomException;
+import com.sanshugpt.exception.CustomException;
 
 @Component
 public class JwtTokenProvider {
@@ -38,7 +37,7 @@ public class JwtTokenProvider {
   @Value("${security.jwt.token.expire-length:3600000}")
   private long validityInMilliseconds = 3600000; // 1h
 
-  @Autowired
+  @Resource
   private MyUserDetails myUserDetails;
 
   @PostConstruct
@@ -46,7 +45,7 @@ public class JwtTokenProvider {
     secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
   }
 
-  public String createToken(String username, List<AppUserRole> appUserRoles) {
+  public String createToken(String username, List<AppUserRolesVO> appUserRoles) {
 
     Claims claims = Jwts.claims().setSubject(username);
     claims.put("auth", appUserRoles.stream().map(s -> new SimpleGrantedAuthority(s.getAuthority())).filter(Objects::nonNull).collect(Collectors.toList()));

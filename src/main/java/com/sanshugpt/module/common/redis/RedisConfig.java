@@ -6,7 +6,7 @@
  * 版权所有，侵权必究！
  */
 
-package io.renren.common.redis;
+package com.sanshugpt.module.common.redis;
 
 import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Bean;

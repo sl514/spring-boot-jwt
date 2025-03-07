@@ -1,4 +1,4 @@
-package murraco.security;
+package com.sanshugpt.security;
 
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -7,9 +7,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 public class JwtTokenFilterConfigurer extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity> {
 
-  private JwtTokenProvider jwtTokenProvider;
+  private com.sanshugpt.security.JwtTokenProvider jwtTokenProvider;
 
-  public JwtTokenFilterConfigurer(JwtTokenProvider jwtTokenProvider) {
+  public JwtTokenFilterConfigurer(com.sanshugpt.security.JwtTokenProvider jwtTokenProvider) {
     this.jwtTokenProvider = jwtTokenProvider;
   }
 

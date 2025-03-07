@@ -6,10 +6,10 @@
  * 版权所有，侵权必究！
  */
 
-package io.renren.common.aspect;
+package com.sanshugpt.module.common.aspect;
 
-import io.renren.common.exception.ErrorCode;
-import io.renren.common.exception.RenException;
+import com.sanshugpt.module.common.exception.ErrorCode;
+import com.sanshugpt.module.common.exception.RenException;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -32,7 +32,7 @@ public class RedisAspect {
     @Value("${ai.redis.open}")
     private boolean open;
 
-    @Around("execution(* io.renren.common.redis.RedisUtils.*(..))")
+    @Around("execution(* com.sanshugpt.module.common.redis.RedisUtils.*(..))")
     public Object around(ProceedingJoinPoint point) throws Throwable {
         Object result = null;
         if (open) {

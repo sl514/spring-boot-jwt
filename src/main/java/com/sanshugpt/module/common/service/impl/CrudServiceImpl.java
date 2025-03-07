@@ -6,15 +6,15 @@
  * 版权所有，侵权必究！
  */
 
-package io.renren.common.service.impl;
+package com.sanshugpt.module.common.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.ReflectionKit;
-import io.renren.common.page.PageData;
-import io.renren.common.service.CrudService;
-import io.renren.common.utils.ConvertUtils;
+import com.sanshugpt.module.common.page.PageData;
+import com.sanshugpt.module.common.service.CrudService;
+import com.sanshugpt.module.common.utils.ConvertUtils;
 import org.springframework.beans.BeanUtils;
 
 import java.util.Arrays;

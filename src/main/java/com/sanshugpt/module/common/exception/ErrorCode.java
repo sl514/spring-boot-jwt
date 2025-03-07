@@ -6,7 +6,7 @@
  * 版权所有，侵权必究！
  */
 
-package io.renren.common.exception;
+package com.sanshugpt.module.common.exception;
 
 /**
  * 错误编码，由5位数字组成，前2位为模块编码，后3位为业务编码

@@ -1,4 +1,4 @@
-package murraco.exception;
+package com.sanshugpt.exception;
 
 import org.springframework.http.HttpStatus;
 

@@ -6,7 +6,7 @@
  * 版权所有，侵权必究！
  */
 
-package io.renren.common.redis;
+package com.sanshugpt.module.common.redis;
 
 /**
  * @author Mark sunlightcs@gmail.com
